@@ -4,16 +4,23 @@ type Props = {
     etiqueta: string
     tipo: string
     nombre: string
+    valor: string
+    alCambiar: (valor:string) => void
 }
 
-function CampoFormulario({etiqueta, tipo, nombre}: Props){
+function CampoFormulario({etiqueta, tipo, nombre, valor, alCambiar}: Props){
     return(
         <div className="mb-3">
             <label className="form-label">
                 {etiqueta}
             </label>
 
-            <Input tipo={tipo} nombre={nombre}/>
+            <Input 
+                tipo={tipo} 
+                nombre={nombre}
+                valor={valor}
+                alCambiar={alCambiar}
+            />
         </div>
     )
 }
