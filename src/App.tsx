@@ -4,6 +4,7 @@ import Productos from "./paginas/Productos"
 import Navbar from "./componentes/organismos/Navbar"
 import Nosotros from "./paginas/Nosotros"
 import Contacto from "./paginas/Contacto"
+import DetalleProducto from "./paginas/DetalleProducto"
 
 function App() {
   return(
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Inicio/>}/>
         <Route path="/productos" element={<Productos/>}/>
+        <Route path="/productos/:id" element={<DetalleProducto/>}/>
         <Route path="/nosotros" element={<Nosotros/>}/>
         <Route path="/contacto" element={<Contacto/>}/>
       </Routes>
