@@ -28,6 +28,9 @@ function FormularioContacto(){
         }
         alert("Formulario enviado correctamente")
 
+        setNombre("")
+        setCorreo("")
+        setMensaje("")
     }
 
     return(

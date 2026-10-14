@@ -20,6 +20,9 @@ function Navbar(){
                     <Link className="nav-link text-white" to="/contacto">
                     Contacto
                     </Link>
+                    <Link className="nav-link text-white" to="/login">
+                    Login
+                    </Link>
                 </div>
             </div>
         </nav>
