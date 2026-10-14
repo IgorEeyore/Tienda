@@ -7,8 +7,31 @@ function FormularioContacto(){
     const[correo,setCorreo] = useState("")
     const[mensaje,setMensaje] = useState("")
 
+    const manejarEnvio = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        if(nombre.trim() === ""){
+            alert("Por favor ingrese su nombre")
+            return
+        }
+        if(correo.trim() === ""){
+            alert("Por favor ingrese su correo")
+            return
+        }
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)){
+            alert("Por favor ingrese un correo valido")
+            return
+        }
+        if(mensaje.trim() === ""){
+            alert("Por favor ingrese un mensaje")
+            return
+        }
+        alert("Formulario enviado correctamente")
+
+    }
+
     return(
-        <form>
+        <form onSubmit={manejarEnvio} noValidate>
             <CampoFormulario
                 etiqueta="Nombre completo"
                 tipo="text"

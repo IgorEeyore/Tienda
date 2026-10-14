@@ -6,7 +6,7 @@ function Contacto(){
             <div className="row justify-content-center">
                 <div className="col-12 col-md-8 col-lg-6">
                     <div className="card shadow-sm p-4">
-                        <h2 className="mb-4">
+                        <h2 className="mb-4" style={{color: 'black'}}>
                             Formulario de contacto
                         </h2>
                         <FormularioContacto/>
