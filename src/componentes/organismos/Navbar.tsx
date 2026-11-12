@@ -23,6 +23,9 @@ function Navbar(){
                     <Link className="nav-link text-white" to="/login">
                     Login
                     </Link>
+                    <Link className="nav-link text-white" to="/ListarContactos">
+                    Mensajes
+                    </Link>
                 </div>
             </div>
         </nav>

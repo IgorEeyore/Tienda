@@ -1,14 +1,19 @@
 import { useState } from "react"
 import CampoFormulario from "../moleculas/CampoFormulario"
 
+import type {SubmitEvent} from "react"
+
 function FormularioContacto(){
 
     const[nombre,setNombre] = useState("")
     const[correo,setCorreo] = useState("")
     const[mensaje,setMensaje] = useState("")
+    const[enviando, setEnviando] = useState(false)
 
-    const manejarEnvio = (e: React.FormEvent<HTMLFormElement>) => {
+    const manejarEnvio = async(e: SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        if (enviando) return
 
         if(nombre.trim() === ""){
             alert("Por favor ingrese su nombre")
@@ -26,11 +31,38 @@ function FormularioContacto(){
             alert("Por favor ingrese un mensaje")
             return
         }
-        alert("Formulario enviado correctamente")
+        
+        setEnviando(true)
 
-        setNombre("")
-        setCorreo("")
-        setMensaje("")
+        try {
+            const respuesta = await fetch("http://localhost:8082/api/contactos",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        nombreCompleto: nombre.trim(),
+                        correo: correo.trim(),
+                        mensaje: mensaje.trim()
+                    }),
+                }
+            )
+
+            if (!respuesta.ok){
+                throw new Error(`Error HTTP ${respuesta.status}`)
+            }
+            alert("Mensaje guardado correctamente")
+
+            setNombre("")
+            setCorreo("")
+            setMensaje("")
+        } catch(error){
+            console.error("Error al enviar el contacto:", error)
+            alert("No se puede enviar el mensaje. Intente nuevamente.")
+        } finally{
+            setEnviando(false)
+        }
     }
 
     return(
@@ -56,8 +88,8 @@ function FormularioContacto(){
                 valor={mensaje}
                 alCambiar={setMensaje}
             />
-            <button type="submit" className="btn btn-primary">
-                Enviar mensaje
+            <button type="submit" className="btn btn-primary" disabled={enviando}>
+                {enviando ? "Enviando...": "Enviar mensaje"}
             </button>
         </form>
     )

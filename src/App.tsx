@@ -6,6 +6,7 @@ import Nosotros from "./paginas/Nosotros"
 import Contacto from "./paginas/Contacto"
 import DetalleProducto from "./paginas/DetalleProducto"
 import Login from "./paginas/Login"
+import ListadoContactos from "./paginas/ListadoContactos"
 
 function App() {
   return(
@@ -18,6 +19,7 @@ function App() {
         <Route path="/productos/:id" element={<DetalleProducto/>}/>
         <Route path="/nosotros" element={<Nosotros/>}/>
         <Route path="/contacto" element={<Contacto/>}/>
+        <Route path="/ListarContactos" element={<ListadoContactos/>}/>
         <Route path="/login" element={<Login/>}/>
       </Routes>
     </>
